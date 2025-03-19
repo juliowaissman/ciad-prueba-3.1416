@@ -194,7 +194,7 @@ def graficos():
            
     st.subheader("Impacto de artículos por coordinación")
     
-    df_articulos = df[df['tipo_producto'] == 'Artículo científico']
+    df_articulos = df.loc[df['tipo_producto'] == 'Artículo científico',:]
     fig_box = px.box(
         df_articulos, x='coordinacion', y='factor_impacto',
         points="all",
@@ -205,5 +205,7 @@ def graficos():
     fig_box.update_traces(quartilemethod="exclusive") 
     # "exclusive", "inclusive", "linear" 
     st.plotly_chart(fig_box, use_container_width=True)
+    
+    
     
 
