@@ -89,12 +89,17 @@ def sankey_chart():
             target.append(label_to_index[colaboro_estudiante])
             values.append(1)
 
-    fig_sankey = go.Figure(go.Sankey(
-        node=dict(pad=20, thickness=20, label=labels),
-        link=dict(source=source, target=target, value=values)
-    ))
+    fig_sankey = go.Figure(
+        go.Sankey(
+            node=dict(pad=20, thickness=20, label=labels),
+            link=dict(source=source, target=target, value=values)
+        )
+    )
 
-    fig_sankey.update_layout(title_text="Flujo de Productos Validados", font_size=12)
+    fig_sankey.update_layout(
+        title_text="Flujo de Productos Validados", 
+        font=dict(size = 12, color = 'black')
+    )
     st.plotly_chart(fig_sankey, use_container_width=True)
 
 
