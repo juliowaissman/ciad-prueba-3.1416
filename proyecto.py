@@ -1,7 +1,12 @@
 import streamlit as st
 
 # 📌 Configurar pantalla completa (DEBE SER LA PRIMERA INSTRUCCIÓN)
-st.set_page_config(layout="wide", page_title="Análisis de Productos Validados 2024")
+st.set_page_config(
+    layout="wide", 
+    initial_sidebar_state="collapsed",
+    page_title="Análisis de Productos 2024"
+    page_icon="📚"
+)
 
 # 📌 Importar módulos después de configurar Streamlit
 import sankey

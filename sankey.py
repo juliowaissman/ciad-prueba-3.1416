@@ -37,25 +37,32 @@ def sankey_chart():
     }
 
     # Selección de una de las 4 categorías
-    st.sidebar.header("Seleccionar una Categoría Principal")
-    categoria_seleccionada = st.sidebar.radio("Selecciona una categoría:", list(categorias.keys()), index=0)
-
+    cat_labels = {
+        'Publicaciones': 'tipos_publicación',
+        'Editor/Revisor': 'tipos_editor_revisor',
+        'Reconocimientos obtenidos': 'tipo_reconocimiento',
+        'Organización de eventos': 'tipo_eventos'
+    }
+    categoria_seleccionada = st.selectbox(
+        "Selecciona una categoría:", list(cat_labels.keys()), index=0
+    ) 
+    
     # Obtener los tipos de producto asociados a la categoría seleccionada
-    tipos_producto_seleccionados = categorias[categoria_seleccionada]
+    tipos_producto_seleccionados = categorias[cat_labels[categoria_seleccionada]]
 
     # Filtrar el dataframe para que solo muestre productos de la categoría seleccionada
-    df_filtrado = df[df["tipo_producto"].isin(tipos_producto_seleccionados)]
+    df_tipo = df[df["tipo_producto"].isin(tipos_producto_seleccionados)]
 
-    # Filtro de Coordinaciones con Checkboxes
-    st.sidebar.header("Seleccionar Coordinaciones")
-    coordinaciones_unicas = sorted(df_filtrado["coordinacion"].dropna().unique())
-
-    seleccion_todas = st.sidebar.checkbox("Seleccionar todas", value=True)
-    coordinaciones_seleccionadas = {
-        coord: st.sidebar.checkbox(coord, value=seleccion_todas, key=coord) for coord in coordinaciones_unicas}
-
-    seleccionadas = [coord for coord, selected in coordinaciones_seleccionadas.items() if selected]
-    df_filtrado = df_filtrado[df_filtrado["coordinacion"].isin(seleccionadas)] if seleccionadas else df_filtrado
+    # Filtro de Coordinaciones 
+    seleccionadas = st.multiselect(
+        "Seleccionar Coordinaciones", 
+        sorted(df_filtrado["coordinacion"].dropna().unique()),
+        default=sorted(df_filtrado["coordinacion"].dropna().unique())
+    )
+    if seleccionadas:
+        df_filtrado = df_tipo[df_filtrado["coordinacion"].isin(seleccionadas)] 
+    else: 
+        df_filtrado
 
     # Construcción del Sankey con subcategorías de la categoría seleccionada
     source, target, values = [], [], []
@@ -99,7 +106,7 @@ def sankey_chart():
 
     fig_sankey.update_layout(
         title_text="Flujo de Productos Validados", 
-        font=dict(size = 14, shadow='off')
+        font=dict(size = 16, shadow='off')
     )
     st.plotly_chart(fig_sankey, use_container_width=True)
 
