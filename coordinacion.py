@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
+import plotly.express as px
 
 @st.cache_data
 def load_data():
@@ -191,5 +192,18 @@ def graficos():
     else:
         st.warning("No hay datos para mostrar en el gráfico Sankey") 
            
-
+    st.subheader("Impacto de artículos por coordinación")
+    
+    df_articulos = df[df['tipo_producto'] == 'Artículo científico']
+    fig_box = px.box(
+        df_articulos, x='coordinacion', y='factor_impacto',
+        points="all",
+        labels={
+            "factor_impacto": "Factor de Impacto", 
+            "coordinacion": "Coordinación"}
+    )
+    fig_box.update_traces(quartilemethod="exclusive") 
+    # "exclusive", "inclusive", "linear" 
+    st.plotly_chart(fig_box, use_container_width=True)
+    
 
