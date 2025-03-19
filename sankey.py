@@ -99,7 +99,7 @@ def sankey_chart():
 
     fig_sankey.update_layout(
         title_text="Flujo de Productos Validados", 
-        font=dict(color='black', size = 12, shadow='off')
+        font=dict(size = 14, shadow='off')
     )
     st.plotly_chart(fig_sankey, use_container_width=True)
 
