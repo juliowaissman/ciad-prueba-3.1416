@@ -51,7 +51,8 @@ def sankey_chart():
     coordinaciones_unicas = sorted(df_filtrado["coordinacion"].dropna().unique())
 
     seleccion_todas = st.sidebar.checkbox("Seleccionar todas", value=True)
-    coordinaciones_seleccionadas = {coord: st.sidebar.checkbox(coord, value=seleccion_todas, key=coord) for coord in coordinaciones_unicas}
+    coordinaciones_seleccionadas = {
+        coord: st.sidebar.checkbox(coord, value=seleccion_todas, key=coord) for coord in coordinaciones_unicas}
 
     seleccionadas = [coord for coord, selected in coordinaciones_seleccionadas.items() if selected]
     df_filtrado = df_filtrado[df_filtrado["coordinacion"].isin(seleccionadas)] if seleccionadas else df_filtrado
@@ -91,7 +92,7 @@ def sankey_chart():
 
     fig_sankey = go.Figure(
         go.Sankey(
-            node=dict(pad=20, thickness=20, label=labels),
+            node=dict(pad=20, thickness=20, label=labels, color='blue', shadow=dict(color='rgba(0, 0, 0, 0.4)', size=5)),
             link=dict(source=source, target=target, value=values)
         )
     )
