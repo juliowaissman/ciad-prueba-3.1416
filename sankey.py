@@ -92,14 +92,14 @@ def sankey_chart():
 
     fig_sankey = go.Figure(
         go.Sankey(
-            node=dict(pad=20, thickness=20, label=labels, shadow="blue"),
+            node=dict(pad=20, thickness=20, label=labels),
             link=dict(source=source, target=target, value=values)
         )
     )
 
     fig_sankey.update_layout(
         title_text="Flujo de Productos Validados", 
-        font=dict(size = 12, color = 'black')
+        font=dict(size = 12)
     )
     st.plotly_chart(fig_sankey, use_container_width=True)
 
