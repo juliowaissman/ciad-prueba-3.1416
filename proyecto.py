@@ -12,9 +12,12 @@ st.set_page_config(
 import sankey
 import erdos
 
-st.title("📊 Productos por tipo y por coordinación")
+st.title("Ejemplo de análisis de datos de producción científica")
 
-tab1, tab2 = st.tabs(["📊 Diagrama de Sankey", "🔗 Grafo de Colaboraciones (Erdős)"])
+tab1, tab2 = st.tabs([
+    "**📚 Agregados por tipo y por coordinación**", 
+    "**🔗 Grafo de Colaboraciones**"
+])
 
 with tab1:
     sankey.sankey_chart()
