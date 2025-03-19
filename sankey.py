@@ -92,7 +92,7 @@ def sankey_chart():
 
     fig_sankey = go.Figure(
         go.Sankey(
-            node=dict(pad=20, thickness=20, label=labels, color='blue'),
+            node=dict(pad=20, thickness=20, label=labels, shadow="blue"),
             link=dict(source=source, target=target, value=values)
         )
     )
