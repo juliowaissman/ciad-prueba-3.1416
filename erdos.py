@@ -59,8 +59,8 @@ def erdos_graph():
 
     # Mostrar tabla y gráfica solo si hay datos
     if not productos_count.empty:
-        st.write(f"Productos en los que ha participado {selected_author}:")
-        st.dataframe(productos_count)
+        #st.write(f"Productos en los que ha participado {selected_author}:")
+        #st.dataframe(productos_count)
 
         # Crear la gráfica de barras
         fig_bar = px.bar(productos_count, x="Tipo de Producto", y="Cantidad", 
@@ -157,7 +157,7 @@ def erdos_graph():
                 node_color.append("blue")
 
         fig_graph = go.Figure()
-        fig_graph.add_trace(go.Scatter(x=edge_x, y=edge_y, line=dict(width=1, color='white'), mode='lines'))
+        fig_graph.add_trace(go.Scatter(x=edge_x, y=edge_y, line=dict(width=1, color='black'), mode='lines'))
         fig_graph.add_trace(go.Scatter(x=node_x, y=node_y, mode='markers', marker=dict(size=10, color=node_color), text=node_text, hoverinfo='text'))
 
         # Fondo personalizado y sin ejes
@@ -166,9 +166,9 @@ def erdos_graph():
             showlegend=False,
             xaxis=dict(showgrid=False, zeroline=False, visible=False),
             yaxis=dict(showgrid=False, zeroline=False, visible=False),
-            plot_bgcolor="#0f1116",
-            paper_bgcolor="#0f1116",
-            font=dict(color="white")
+            plot_bgcolor="white", #"#0f1116",
+            paper_bgcolor="white", #"#0f1116",
+            font=dict(color="black")
         )
 
         st.plotly_chart(fig_graph, use_container_width=True)

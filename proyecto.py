@@ -9,18 +9,18 @@ st.set_page_config(
 )
 
 # 📌 Importar módulos después de configurar Streamlit
-import sankey
+import coordinacion
 import erdos
 
 st.title("Ejemplo de análisis de datos de producción científica")
 
 tab1, tab2 = st.tabs([
-    "**📚 Agregados por tipo y por coordinación**", 
-    "**🔗 Grafo de Colaboraciones**"
+    "**📚 Análisis por coordinación**", 
+    "**🔗 Análisis por investigador**"
 ])
 
 with tab1:
-    sankey.sankey_chart()
+    coordinacion.graficos()
 
 with tab2:
     erdos.erdos_graph()
