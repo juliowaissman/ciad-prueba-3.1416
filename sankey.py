@@ -104,7 +104,7 @@ def sankey_chart():
                 pad=15, thickness=15, label=labels
             ),
             link=dict(
-                source=source, target=target, value=values, color="lightbrown"
+                source=source, target=target, value=values, color="lightsalmon"
             )
         )
     )
