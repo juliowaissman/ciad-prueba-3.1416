@@ -56,13 +56,13 @@ def sankey_chart():
     # Filtro de Coordinaciones 
     seleccionadas = st.multiselect(
         "Seleccionar Coordinaciones", 
-        sorted(df_filtrado["coordinacion"].dropna().unique()),
-        default=sorted(df_filtrado["coordinacion"].dropna().unique())
+        sorted(df_tipo["coordinacion"].dropna().unique()),
+        default=sorted(df_tipo["coordinacion"].dropna().unique())
     )
     if seleccionadas:
         df_filtrado = df_tipo[df_filtrado["coordinacion"].isin(seleccionadas)] 
     else: 
-        df_filtrado
+        df_filtrado = df_tipo
 
     # Construcción del Sankey con subcategorías de la categoría seleccionada
     source, target, values = [], [], []
